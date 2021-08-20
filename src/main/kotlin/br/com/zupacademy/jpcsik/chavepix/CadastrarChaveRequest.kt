@@ -12,7 +12,7 @@ import javax.validation.constraints.Size
 @Introspected
 data class CadastrarChaveRequest(
     @field:NotBlank val tipoChave: TipoChave,
-    @field:NotBlank @field:Size(max = 77) val valorChave: String,
+    @field:Size(max = 77) val valorChave: String,
     @field:NotBlank val tipoConta: TipoConta
 ) {
 
