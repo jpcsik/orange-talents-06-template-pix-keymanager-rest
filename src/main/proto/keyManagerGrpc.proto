@@ -1,0 +1,128 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "br.com.zupacademy.jpcsik";
+option java_outer_classname = "KeyManagerGrpc";
+option objc_class_prefix = "HLW";
+
+import "google/protobuf/timestamp.proto";
+
+package br.com.zupacademy.jpcsik;
+
+service CadastrarChaveService {
+  rpc cadastrar (NovaChavePixRequest) returns (NovaChavePixResponse) {}
+}
+
+service RemoverChaveService {
+  rpc removerChave (RemoverChaveRequest) returns (RemoverChaveResponse) {}
+}
+
+service BuscarChaveService {
+  rpc buscarChave (BuscarChaveRequest) returns (BuscarChaveResponse) {}
+}
+
+service ListarChavesService {
+  rpc listarChaves (ListaChavesRequest) returns (ListaChavesResponse) {}
+}
+
+
+    /*
+    LISTAR CHAVES
+    */
+
+message ListaChavesRequest {
+  string clienteId = 1;
+}
+
+message ListaChavesResponse {
+
+  string clienteId = 1;
+  repeated ChavePix chaves = 2;
+
+  message ChavePix {
+    string pixId = 1;
+    TipoChave tipoChave = 2;
+    string valorChave = 3;
+    TipoConta tipoConta = 4;
+    google.protobuf.Timestamp criadaEm = 5;
+  }
+
+}
+
+
+    /*
+      BUSCAR CHAVE
+     */
+
+message BuscarChaveRequest{
+  optional string pixId = 1;
+  optional string clienteId = 2;
+  optional string chave = 3;
+}
+
+message BuscarChaveResponse{
+
+  optional string clientId = 1;
+  optional string pixId = 2;
+  ChavePix chave = 3;
+
+  message ChavePix {
+    TipoChave tipo = 1;
+    string chave = 2;
+    DadosConta conta = 3;
+    google.protobuf.Timestamp criadaEm = 4;
+  }
+
+  message DadosConta {
+    TipoConta tipo = 1;
+    string instituicao = 2;
+    string agencia = 3;
+    string numero = 4;
+    string nomeTitular = 5;
+    string cpfDoTitular = 6;
+  }
+}
+
+
+    /*
+     REMOVER CHAVE
+     */
+
+message RemoverChaveRequest {
+  string pixId = 1;
+  string clienteId = 2;
+}
+
+message RemoverChaveResponse {
+  string mensagem = 1;
+}
+
+
+    /*
+      CADASTRAR CHAVE
+     */
+
+message NovaChavePixRequest {
+  string clienteId = 1;
+  TipoChave tipoChave = 2;
+  string valorChave = 3;
+  TipoConta tipoConta = 4;
+}
+
+message NovaChavePixResponse {
+  string pixId = 1;
+}
+
+enum TipoChave {
+  CHAVE_DESCONHECIDA = 0;
+  CPF = 1;
+  TELEFONE = 2;
+  EMAIL = 3;
+  ALEATORIA = 4;
+}
+
+enum TipoConta {
+  CONTA_DESCONHECIDA = 0;
+  CONTA_CORRENTE = 1;
+  CONTA_POUPANCA = 2;
+}
