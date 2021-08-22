@@ -7,10 +7,10 @@ import io.micronaut.grpc.annotation.GrpcChannel
 import jakarta.inject.Singleton
 
 @Factory
-class KeyManagerGrpcFactory(@GrpcChannel("keyManagerGrpc") val channel: ManagedChannel) {
+open class KeyManagerGrpcFactory(@GrpcChannel("keyManagerGrpc") val channel: ManagedChannel) {
 
     @Singleton
-    fun cadastraChave(): CadastrarChaveServiceGrpc.CadastrarChaveServiceBlockingStub {
+    open fun cadastraChave(): CadastrarChaveServiceGrpc.CadastrarChaveServiceBlockingStub {
         return CadastrarChaveServiceGrpc.newBlockingStub(channel)
     }
 
