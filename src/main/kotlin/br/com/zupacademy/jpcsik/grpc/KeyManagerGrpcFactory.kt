@@ -1,5 +1,6 @@
 package br.com.zupacademy.jpcsik.grpc
 
+import br.com.zupacademy.jpcsik.BuscarChaveServiceGrpc
 import br.com.zupacademy.jpcsik.CadastrarChaveServiceGrpc
 import br.com.zupacademy.jpcsik.RemoverChaveServiceGrpc
 import io.grpc.ManagedChannel
@@ -18,6 +19,11 @@ open class KeyManagerGrpcFactory(@GrpcChannel("keyManagerGrpc") val channel: Man
     @Singleton
     open fun removeChave(): RemoverChaveServiceGrpc.RemoverChaveServiceBlockingStub {
         return RemoverChaveServiceGrpc.newBlockingStub(channel)
+    }
+
+    @Singleton
+    open fun buscaChave(): BuscarChaveServiceGrpc.BuscarChaveServiceBlockingStub {
+        return BuscarChaveServiceGrpc.newBlockingStub(channel)
     }
 
 }

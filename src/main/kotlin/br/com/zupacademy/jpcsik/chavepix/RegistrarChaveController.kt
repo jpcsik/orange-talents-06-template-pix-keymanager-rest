@@ -11,7 +11,7 @@ import javax.validation.Valid
 
 @Validated
 @Controller("/api/v1/clientes/{clienteId}")
-class RegistraChaveController(private val cadastraChaveClient: CadastrarChaveServiceGrpc.CadastrarChaveServiceBlockingStub) {
+class RegistrarChaveController(private val cadastraChaveClient: CadastrarChaveServiceGrpc.CadastrarChaveServiceBlockingStub) {
 
     @Post("/pix")
     fun cadastrar(clienteId: UUID, @Valid @Body request: CadastrarChaveRequest): HttpResponse<Any> {

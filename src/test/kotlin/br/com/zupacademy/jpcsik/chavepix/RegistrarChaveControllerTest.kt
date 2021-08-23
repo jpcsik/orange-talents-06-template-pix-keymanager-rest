@@ -20,7 +20,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @MicronautTest
-internal class RegistraChaveControllerTest{
+internal class RegistrarChaveControllerTest{
 
     @field:Inject
     lateinit var grpcClient: CadastrarChaveServiceGrpc.CadastrarChaveServiceBlockingStub
