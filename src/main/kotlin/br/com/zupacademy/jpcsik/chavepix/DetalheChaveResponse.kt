@@ -10,7 +10,8 @@ import java.time.format.DateTimeFormatter
 class DetalheChaveResponse(response: BuscarChaveResponse) {
 
     val pixId = response.pixId
-    val tipo = response.chave.tipo
+    val clienteId = response.clientId
+    val tipo = response.chave.tipo.name
     val chave = response.chave.chave
 
     val criadaEm = LocalDateTime.ofEpochSecond(

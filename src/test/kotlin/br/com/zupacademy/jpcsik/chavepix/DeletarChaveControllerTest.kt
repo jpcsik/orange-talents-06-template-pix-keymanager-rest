@@ -31,8 +31,9 @@ internal class DeletarChaveControllerTest {
 
     private val pixId = UUID.randomUUID()
 
+
     @Test
-    fun `deve deletar uma chave`() {
+    fun `Deve deletar uma chave`() {
         //cenario
         val respostaGrpc = RemoverChaveResponse.newBuilder()
             .setMensagem("chave removida com sucesso!")
