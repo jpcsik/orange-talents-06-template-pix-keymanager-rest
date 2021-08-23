@@ -3,7 +3,7 @@ package br.com.zupacademy.jpcsik.chavepix
 import io.micronaut.core.annotation.AnnotationValue
 import io.micronaut.validation.validator.constraints.ConstraintValidator
 import io.micronaut.validation.validator.constraints.ConstraintValidatorContext
-import jakarta.inject.Singleton
+import javax.inject.Singleton
 import javax.validation.Constraint
 import javax.validation.Payload
 import kotlin.annotation.AnnotationRetention.*

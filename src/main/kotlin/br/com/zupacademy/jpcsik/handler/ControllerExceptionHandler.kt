@@ -7,7 +7,7 @@ import io.micronaut.http.HttpResponse
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.hateoas.JsonError
 import io.micronaut.http.server.exceptions.ExceptionHandler
-import jakarta.inject.Singleton
+import javax.inject.Singleton
 
 @Singleton
 class ControllerExceptionHandler: ExceptionHandler<StatusRuntimeException, HttpResponse<Any>> {

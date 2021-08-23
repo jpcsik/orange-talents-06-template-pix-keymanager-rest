@@ -18,10 +18,7 @@ class DeletarChaveController(private val removeChaveClient: RemoverChaveServiceG
 
         removeChaveClient.removerChave(request.toGrpcRequest(clienteId))
 
-        return HttpResponse.ok(object {
-            val chave = request.pixId
-            val mensagem = "chave deletada com sucesso!"
-        })
+        return HttpResponse.ok()
 
     }
 

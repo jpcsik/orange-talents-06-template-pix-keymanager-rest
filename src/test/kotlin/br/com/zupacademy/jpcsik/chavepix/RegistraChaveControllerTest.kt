@@ -11,13 +11,13 @@ import io.micronaut.http.client.HttpClient
 import io.micronaut.http.client.annotation.Client
 import io.micronaut.http.client.exceptions.HttpClientResponseException
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
-import jakarta.inject.Inject
-import jakarta.inject.Singleton
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
 import java.util.*
+import javax.inject.Inject
+import javax.inject.Singleton
 
 @MicronautTest
 internal class RegistraChaveControllerTest{
@@ -139,9 +139,9 @@ internal class RegistraChaveControllerTest{
 
     @Factory
     @Replaces(factory = KeyManagerGrpcFactory::class)
-    internal class MockitoStubFactory {
+    internal class CadastraStubFactory {
         @Singleton
-        fun stubMock(): CadastrarChaveServiceGrpc.CadastrarChaveServiceBlockingStub {
+        fun cadastraStubMock(): CadastrarChaveServiceGrpc.CadastrarChaveServiceBlockingStub {
             return Mockito.mock(CadastrarChaveServiceGrpc.CadastrarChaveServiceBlockingStub::class.java)
         }
     }
