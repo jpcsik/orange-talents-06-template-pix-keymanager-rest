@@ -17,8 +17,10 @@ class ListarChavesController(private val listarChaveClient: ListarChavesServiceG
             .setClienteId(clienteId.toString())
             .build()
 
+        //Busca a lista de chaves por id do cliente no servidor grpc
         val response = listarChaveClient.listarChaves(request)
 
+                                    //Mapeia cada item da lista de chaves para um objeto ChavesResponse
         return HttpResponse.ok(response.chavesList.map { ChavesResponse(it) })
     }
 

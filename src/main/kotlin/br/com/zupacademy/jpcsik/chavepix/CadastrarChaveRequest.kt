@@ -16,6 +16,7 @@ data class CadastrarChaveRequest(
     @field:NotBlank val tipoConta: TipoConta
 ) {
 
+    //Retorna uma request grpc
     fun toGrpcRequest(clienteId: UUID): NovaChavePixRequest? {
         return NovaChavePixRequest.newBuilder()
             .setClienteId(clienteId.toString())

@@ -9,6 +9,7 @@ import io.micronaut.http.hateoas.JsonError
 import io.micronaut.http.server.exceptions.ExceptionHandler
 import javax.inject.Singleton
 
+//Trata as exceptions que podem ser lancadas pelo servidor grpc em qualquer ponto da aplicacao
 @Singleton
 class ControllerExceptionHandler: ExceptionHandler<StatusRuntimeException, HttpResponse<Any>> {
 
@@ -18,6 +19,7 @@ class ControllerExceptionHandler: ExceptionHandler<StatusRuntimeException, HttpR
 
         val statusDescription = exception.status.description
 
+        //Mapeia os erros do servidor grpc para um status http
         val (httpStatus, message) = when (statusCode) {
             Status.INVALID_ARGUMENT.code -> Pair(HttpStatus.BAD_REQUEST, statusDescription)
             Status.NOT_FOUND.code -> Pair(HttpStatus.NOT_FOUND, statusDescription)
@@ -27,6 +29,10 @@ class ControllerExceptionHandler: ExceptionHandler<StatusRuntimeException, HttpR
 
         }
 
+        /*
+        Retorna uma resposta para o usuario com o status adequado
+        e com a mensagem de erro definida pelo servidor grpc
+         */
         return HttpResponse
             .status<JsonError>(httpStatus)
             .body(JsonError(message))

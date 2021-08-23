@@ -9,6 +9,7 @@ import io.micronaut.context.annotation.Factory
 import io.micronaut.grpc.annotation.GrpcChannel
 import javax.inject.Singleton
 
+//Gera os clients para cada servico do servidor grpc
 @Factory
 open class KeyManagerGrpcFactory(@GrpcChannel("keyManagerGrpc") val channel: ManagedChannel) {
 

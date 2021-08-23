@@ -18,6 +18,7 @@ class ConsultarChaveController(private val buscaChaveClient: BuscarChaveServiceG
             .setPixId(pixId.toString())
             .build()
 
+        //Busca a chave no servidor grpc
         val response = buscaChaveClient.buscarChave(request)
 
         return HttpResponse.ok(DetalheChaveResponse(response))

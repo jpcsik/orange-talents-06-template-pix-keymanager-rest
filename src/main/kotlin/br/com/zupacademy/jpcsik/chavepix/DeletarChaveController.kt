@@ -20,6 +20,7 @@ class DeletarChaveController(private val removeChaveClient: RemoverChaveServiceG
             .setPixId(pixId.toString())
             .build()
 
+        //Faz a requisicao para o servidor grpc deletar a chave
         removeChaveClient.removerChave(request)
 
         return HttpResponse.ok()

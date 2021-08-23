@@ -14,12 +14,14 @@ class DetalheChaveResponse(response: BuscarChaveResponse) {
     val tipo = response.chave.tipo.name
     val chave = response.chave.chave
 
+    //Converte Timestamp em LocalDateTime
     val criadaEm = LocalDateTime.ofEpochSecond(
         response.chave.criadaEm.seconds,
         response.chave.criadaEm.nanos,
         ZoneOffset.UTC
     ).format(DateTimeFormatter.ofPattern("dd/MM/yyyy-hh/ss/nn"))
 
+    //Mapeia os dados da conta para uma variavel da chave
     val conta = mapOf(
         Pair("tipo", response.chave.conta.tipo.name),
         Pair("instituicao", response.chave.conta.instituicao),

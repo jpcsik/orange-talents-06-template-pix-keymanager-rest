@@ -12,6 +12,7 @@ class ChavesResponse(response: ListaChavesResponse.ChavePix){
     val tipo = response.tipoChave.name
     val conta = response.tipoConta.name
 
+    //Converte Timestamp em LocalDateTime
     val criadaEm = LocalDateTime.ofEpochSecond(
         response.criadaEm.seconds,
         response.criadaEm.nanos,

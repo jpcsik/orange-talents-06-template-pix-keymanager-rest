@@ -16,8 +16,10 @@ class RegistrarChaveController(private val cadastraChaveClient: CadastrarChaveSe
     @Post("/pix")
     fun cadastrar(clienteId: UUID, @Valid @Body request: CadastrarChaveRequest): HttpResponse<Any> {
 
+        //Faz a requisicao para o servidor grpc cadastrar a nova chave
         val response = cadastraChaveClient.cadastrar(request.toGrpcRequest(clienteId))
 
+        //Cria a uri de resposta
         val uri = HttpResponse.uri("/api/v1/clientes/$clienteId/pix/${response.pixId}")
 
         return HttpResponse.created(uri)
