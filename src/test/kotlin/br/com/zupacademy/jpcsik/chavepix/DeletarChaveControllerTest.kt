@@ -18,7 +18,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @MicronautTest
-internal class DeletarChaveControllerTest{
+internal class DeletarChaveControllerTest {
 
     @field:Inject
     lateinit var grpcClient: RemoverChaveServiceGrpc.RemoverChaveServiceBlockingStub
@@ -29,13 +29,11 @@ internal class DeletarChaveControllerTest{
 
     private val clienteId = UUID.randomUUID()
 
-    @Test
-    fun `deve deletar uma chave`(){
-        //cenario
-        val deletarRequest = object {
-            val pixId = UUID.randomUUID()
-        }
+    private val pixId = UUID.randomUUID()
 
+    @Test
+    fun `deve deletar uma chave`() {
+        //cenario
         val respostaGrpc = RemoverChaveResponse.newBuilder()
             .setMensagem("chave removida com sucesso!")
             .build()
@@ -45,8 +43,8 @@ internal class DeletarChaveControllerTest{
             .`when`(grpcClient.removerChave(Mockito.any()))
             .thenReturn(respostaGrpc)
 
-        val request = HttpRequest.DELETE("/api/v1/clientes/$clienteId/pix", deletarRequest)
-        val response = httpClient.toBlocking().exchange(request, DeletarChaveRequest::class.java)
+        val request = HttpRequest.DELETE<Any>("/api/v1/clientes/$clienteId/pix/$pixId")
+        val response = httpClient.toBlocking().exchange(request, Any::class.java)
 
         //validacao
         assertEquals(HttpStatus.OK, response.status)
